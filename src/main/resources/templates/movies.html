@@ -5,9 +5,19 @@
 <title>Movies</title>
 </head>
 <body>
-
-<h1>Moi</h1>
-
-
+	<table>
+		<tr>
+			<th>Nimi</th>
+			<th>Julkaisuvuosi</th>
+			<th>Genre</th>
+			<th>Arviointi</th>
+		</tr>
+		<tr th:each="movie : ${movies}">
+			<td th:text="${movie.nimi}">Nimi</td>
+			<td th:text="${movie.julkaisuvuosi}">Julkaisuvuosi</td>
+			<td th:text="${movie.genre}">Genre</td>
+			<td th:text="${movie.arviointi}">Arviointi</td>
+		</tr>
+	</table>
 </body>
 </html>
