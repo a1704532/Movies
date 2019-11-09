@@ -1,17 +1,15 @@
 package harjoitustyo.Movies.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Movie {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -20,20 +18,20 @@ public class Movie {
 	private int rating;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "genreid")
 	private Genre genre;
 
 	public Movie() {
 	}
 
-	public Movie(String name, int releaseYear, Genre genre, int rating) {
-
+	public Movie(String name, int release, Genre genre, int rating) {
+		super();
 		this.name = name;
 		this.release = release;
-		this.genre = genre;
 		this.rating = rating;
+		this.release = release;
 
+		this.genre = genre;
 	}
 
 	public Long getId() {
@@ -81,7 +79,5 @@ public class Movie {
 		return "Movie [id=" + id + ", name=" + name + ", release=" + release + ", rating=" + rating + ", genre=" + genre
 				+ "]";
 	}
-
-	
 	
 }

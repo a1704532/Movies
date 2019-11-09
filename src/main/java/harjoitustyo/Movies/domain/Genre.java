@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,17 +12,16 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Genre {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long genreid;
 	private String name;
-
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
 	private List<Movie> movies;
-
-	public Genre() {
-	}
-
+	
+	public Genre() {}
+	
 	public Genre(String name) {
 		super();
 		this.name = name;
