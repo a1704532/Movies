@@ -15,12 +15,12 @@
 			<input type="text" id="release" th:field="*{release}" />
 			
 			<div style="clear: both; display: block; height: 10px;"></div>						
-		  	<label for="genres">Category</label>
+		  	<label for="genres">Genre</label>
 			 <select id="genres" th:field="*{genre}">
        			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
     		</select>
 			
-			<label for="rating">Arviointi</label> 
+			<label for="rating">Arviointi (1-5)</label> 
 			<input type="text" id="rating" th:field="*{rating}" />
 			
 			<input type="submit" value="Save"></input>

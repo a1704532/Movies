@@ -20,11 +20,11 @@ public class MovieController {
 
 	@Autowired
 	private MovieRepository repository;
-	
+
 	@Autowired
 	private GenreRepository grepository;
-	
-	
+
+
 
 	@GetMapping("/movies")
 	public String bookList(Model model) {
@@ -32,7 +32,7 @@ public class MovieController {
 
 		return "movies";
 	}
-	 
+
 
 	@GetMapping("/delete/{id}")
 	public String deleteMovie(@PathVariable("id") Long movieId, Model model) {
@@ -53,10 +53,11 @@ public class MovieController {
 		return "redirect:movies";
 	}
 
-	@RequestMapping("/edit/{id}")
-	public String editMovie(@PathVariable("id") Long movieId, Model model) {
-		model.addAttribute("movie", repository.findById(movieId));
-
-		return "editmovie";
-	}
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editMovie(@PathVariable("id") Long movieId, Model model) {
+    	model.addAttribute("movie", repository.findById(movieId));
+    	model.addAttribute("genres", grepository.findAll());
+    	
+    	return "editmovie";
+    }
 }

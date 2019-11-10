@@ -1,19 +1,32 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Edit movie</title>
+    <title>Studentlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<form th:object="${movie}" th:action="@{../save}" action="#" method="post">
-
-		<input type="hidden" th:field="*{id}" /> 
-		<input type="text" th:field="*{name}" />
-		<input type="text" th:field="*{release}" /> 
-		<input type="text" th:field="*{genre}" />
-		<input type="text" th:field="*{rating}" />
-	
-		<input type="submit" value="Save"></input>
-	</form>
+	<h1>Add movie</h1>
+	<div>
+		<form th:object="${movie}" th:action="@{../save}" action="#" method="post">
+			<input type="hidden" id="id" th:field="*{id}" />
+			<label for="name">Nimi</label>
+			<input type="text" id="name" th:field="*{name}" />
+			
+			<label for="release">Julkaisuvuosi</label>
+			<input type="text" id="release" th:field="*{release}" />
+			
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="genres">Genre</label>
+			 <select id="genres" th:field="*{genre}">
+       			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
+    		</select>
+			
+			<label for="rating">Arviointi (1-5)</label>
+			<input type="text" id="rating" th:field="*{rating}" />
+		
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
 </body>
 </html>
