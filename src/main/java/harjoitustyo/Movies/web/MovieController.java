@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import harjoitustyo.Movies.domain.GenreRepository;
 import harjoitustyo.Movies.domain.Movie;
 import harjoitustyo.Movies.domain.MovieRepository;
+import harjoitustyo.Movies.domain.UserRepository;
 
 
 
@@ -23,7 +25,12 @@ public class MovieController {
 
 	@Autowired
 	private GenreRepository grepository;
+	
+	@Autowired
+	private UserRepository urepository;
 
+	
+	
 
 
 	@GetMapping("/movies")
@@ -60,4 +67,10 @@ public class MovieController {
     	
     	return "editmovie";
     }
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login()  {
+		
+		return "login";
+	}
 }
