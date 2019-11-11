@@ -43,7 +43,7 @@ public class MovieController {
     } 
 
 	
-	@GetMapping("/movies")
+	@GetMapping({"/movies","/"})
 	public String movieList(Model model) {
 		model.addAttribute("movies", repository.findAll());
 
