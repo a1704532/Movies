@@ -1,5 +1,7 @@
 package harjoitustyo.Movies.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import harjoitustyo.Movies.domain.GenreRepository;
 import harjoitustyo.Movies.domain.Movie;
@@ -30,7 +32,10 @@ public class MovieController {
 	private UserRepository urepository;
 
 	
-	
+	@RequestMapping(value="/moviejson", method = RequestMethod.GET)
+    public @ResponseBody List<Movie> movieListRest() {	
+        return (List<Movie>) repository.findByName("Titanic");
+    }
 
 
 	@GetMapping("/movies")

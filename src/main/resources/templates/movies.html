@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
 <head>
@@ -28,25 +28,25 @@ body {
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>
-				<th>Nimi</th>
-				<th>Julkaisuvuosi</th>
+				<th>Name</th>
+				<th>Release</th>
 				<th>Genre</th>
-				<th>Arviointi</th>
+				<th>Rating</th>
 			</tr>
 			<tr th:each="movie : ${movies}">
 				<td th:text="${movie.name}">Name</td>
 				<td th:text="${movie.release}">Release Year</td>
 				<td th:text="${movie.genre.name}">Genre</td>
 				<td th:text="${movie.rating}">Rating</td>
-				<td><a th:href="@{/edit/{id}(id=${movie.id})}"
+				<td sec:authorize="hasRole('USER')"><a th:href="@{/edit/{id}(id=${movie.id})}"
 					class="btn btn-info">Edit</a></td>
-				<td><a th:href="@{/delete/{id}(id=${movie.id})}"
-					class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}"
+				class="btn btn-danger">Delete</a></td>
 
 
 			</tr>
 	</table>
-
+	
 	<a href="/addmovie" class="btn btn-primary">Add</a>
 </body>
 </html>

@@ -4,15 +4,20 @@
     <title>Studentlist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
+<style th:inline="text">
+body {
+	background: lightblue no-repeat center center fixed;
+}
+</style>
 <body>
 	<h1>Add movie</h1>
 	<div>
 		<form th:object="${movie}" th:action="@{../save}" action="#" method="post">
 			<input type="hidden" id="id" th:field="*{id}" />
-			<label for="name">Nimi</label>
+			<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			
-			<label for="release">Julkaisuvuosi</label>
+			<label for="release">Year</label>
 			<input type="text" id="release" th:field="*{release}" />
 			
 			<div style="clear: both; display: block; height: 10px;"></div>						
@@ -21,7 +26,7 @@
        			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
     		</select>
 			
-			<label for="rating">Arviointi (1-5)</label>
+			<label for="rating">Rating (1-5)</label>
 			<input type="text" id="rating" th:field="*{rating}" />
 		
 			<div style="clear: both; display: block; height: 10px;"></div>

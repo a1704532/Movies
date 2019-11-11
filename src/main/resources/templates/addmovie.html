@@ -4,14 +4,19 @@
 <meta charset="ISO-8859-1">
 <title>Add Movies</title>
 </head>
+<style th:inline="text">
+body {
+	background: lightblue no-repeat center center fixed;
+}
+</style>
 <body>
 	<h1>Add movie</h1>
 	<div>
 		<form th:object="${movie}" th:action="@{save}" action="#" method="post">
-			<label for="name">Nimi</label> 
+			<label for="name">Name</label> 
 			<input type="text" id="name" th:field="*{name}" /> 
 			
-			<label for="release">Julkaisuvuosi</label> 
+			<label for="release">Release</label> 
 			<input type="text" id="release" th:field="*{release}" />
 			
 			<div style="clear: both; display: block; height: 10px;"></div>						
@@ -20,7 +25,7 @@
        			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
     		</select>
 			
-			<label for="rating">Arviointi (1-5)</label> 
+			<label for="rating">Rating (1-5)</label> 
 			<input type="text" id="rating" th:field="*{rating}" />
 			
 			<input type="submit" value="Save"></input>

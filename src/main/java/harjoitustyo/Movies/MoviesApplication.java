@@ -31,10 +31,11 @@ public class MoviesApplication implements CommandLineRunner {
 			grepository.save(new Genre("Komedia"));
 			grepository.save(new Genre("Fantasia"));
 			grepository.save(new Genre("Toiminta"));
+			grepository.save(new Genre("Draama"));
 			
 			
 			
-			repository.save(new Movie("Titanic", 1990, grepository.findByName("Komedia").get(0), 1));
+			repository.save(new Movie("Titanic", 1997, grepository.findByName("Draama").get(0), 1));
 			
 			User user1 = new User("user", "$2a$10$nuHc9JW7ceOOOcR/b9i/hu/5ZHteDAS13pDb.j.7EIIPCrpjRB1P2",
 					"user@gmail.com", "USER");
