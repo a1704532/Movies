@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Studentlist</title>
+    <title>Edit movie</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <style th:inline="text">
@@ -17,19 +17,25 @@ body {
 			<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			
+			<div style="height: 5px;"></div>
 			<label for="release">Year</label>
 			<input type="text" id="release" th:field="*{release}" />
 			
-			<div style="clear: both; display: block; height: 10px;"></div>						
+			<div style="height: 5px;"></div>						
 		  	<label for="genres">Genre</label>
 			 <select id="genres" th:field="*{genre}">
        			<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
     		</select>
 			
+			<div style="height: 5px;"></div>
+			<label for="director">Director</label>
+			<input type="text" id="director" th:field="*{director}" />
+			
+			<div style="height: 5px;"></div>
 			<label for="rating">Rating (1-5)</label>
 			<input type="text" id="rating" th:field="*{rating}" />
 		
-			<div style="clear: both; display: block; height: 10px;"></div>
+			<div style="height: 5px;"></div>
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>

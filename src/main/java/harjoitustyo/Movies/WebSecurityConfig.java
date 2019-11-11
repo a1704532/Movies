@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/movies/**", "/css/**", "/", "/moviejson").permitAll() 
+                .antMatchers("/movies/**", "/css/**", "/", "/moviejson", "/moviejson/{id}").permitAll() 
                 .and()
                 .authorizeRequests()
                 .antMatchers("addmovie", "save", "edit/{id}", "delete/{id}").permitAll()
@@ -38,9 +38,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             
     }
 
-    // ...
-
-    
 
     @Bean
     @Override
@@ -48,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         List<UserDetails> users = new ArrayList();
     	UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
-                .password("1")
+                .password("user")
                 .roles("USER")
                 .build();
 
@@ -56,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	
     	user = User.withDefaultPasswordEncoder()
                    .username("admin")
-                   .password("1")
+                   .password("admin")
                    .roles("USER", "ADMIN")
                    .build();
     	

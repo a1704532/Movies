@@ -42,11 +42,8 @@ body {
 					class="btn btn-info">Edit</a></td>
 				<td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}"
 				class="btn btn-danger">Delete</a></td>
-
-
 			</tr>
 	</table>
-	
-	<a href="/addmovie" class="btn btn-primary">Add</a>
+	<span sec:authorize="hasRole('USER')"><a href="/addmovie" class="btn btn-primary">Add</a></span>
 </body>
 </html>

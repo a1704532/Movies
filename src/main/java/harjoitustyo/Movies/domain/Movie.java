@@ -18,6 +18,7 @@ public class Movie {
 	private String name;
 	private int release;
 	private int rating;
+	private String director;
 
 	@ManyToOne
 	@JsonIgnore
@@ -27,13 +28,13 @@ public class Movie {
 	public Movie() {
 	}
 
-	public Movie(String name, int release, Genre genre, int rating) {
+	public Movie(String name, int release, Genre genre, String director, int rating) {
 		super();
 		this.name = name;
 		this.release = release;
 		this.rating = rating;
 		this.release = release;
-
+		this.director = director;
 		this.genre = genre;
 	}
 
@@ -69,6 +70,14 @@ public class Movie {
 		this.rating = rating;
 	}
 
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
 	public Genre getGenre() {
 		return genre;
 	}
@@ -79,8 +88,7 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", name=" + name + ", release=" + release + ", rating=" + rating + ", genre=" + genre
-				+ "]";
+		return "Movie [id=" + id + ", name=" + name + ", release=" + release + ", rating=" + rating + ", director="
+				+ director + ", genre=" + genre + "]";
 	}
-	
 }

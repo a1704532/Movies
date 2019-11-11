@@ -1,6 +1,7 @@
 package harjoitustyo.Movies.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import harjoitustyo.Movies.domain.GenreRepository;
@@ -32,14 +32,19 @@ public class MovieController {
 	private UserRepository urepository;
 
 	
-	@RequestMapping(value="/moviejson", method = RequestMethod.GET)
+	@GetMapping("/moviejson")
     public @ResponseBody List<Movie> movieListRest() {	
-        return (List<Movie>) repository.findByName("Titanic");
+        return (List<Movie>) repository.findAll();
     }
+	
+	@GetMapping("/moviejson/{id}")
+	public @ResponseBody Optional<Movie> findMovieRest(@PathVariable("id") Long movieId) {	
+    	return repository.findById(movieId);
+    } 
 
-
+	
 	@GetMapping("/movies")
-	public String bookList(Model model) {
+	public String movieList(Model model) {
 		model.addAttribute("movies", repository.findAll());
 
 		return "movies";
@@ -52,7 +57,7 @@ public class MovieController {
 		return "redirect:../movies";
 	}
 
-	@RequestMapping(value = "/addmovie")
+	@RequestMapping("/addmovie")
 	public String addMovie(Model model) {
 		model.addAttribute("movie", new Movie());
 		model.addAttribute("genres", grepository.findAll());
@@ -65,7 +70,7 @@ public class MovieController {
 		return "redirect:movies";
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	@GetMapping("/edit/{id}")
     public String editMovie(@PathVariable("id") Long movieId, Model model) {
     	model.addAttribute("movie", repository.findById(movieId));
     	model.addAttribute("genres", grepository.findAll());
@@ -73,7 +78,7 @@ public class MovieController {
     	return "editmovie";
     }
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@GetMapping("/login")
 	public String login()  {
 		
 		return "login";
